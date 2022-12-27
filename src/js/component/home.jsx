@@ -7,7 +7,7 @@ const Home = () => {
 
 
 	return (
-		<div className="todo">
+		<div className="box">
 			<ToDoList/>
 		</div>
 	);
@@ -16,7 +16,7 @@ const Home = () => {
 
 fetch('https://assets.breatheco.de/apis/fake/todos/user/Dalyaa', {
       method: "PUT",
-      body: JSON.stringify(todos),
+      body: JSON.stringify(ToDoList),
       headers: {
         "Content-Type": "application/json"
       }
