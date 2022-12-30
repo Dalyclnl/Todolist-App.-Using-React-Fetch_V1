@@ -19,6 +19,7 @@ body{
 .container{
   box-shadow: 5px 5px 15px gray;
 }
+
 ul li{
     background-color:whitesmoke ;
     border: 1px solid rgb(190, 190, 190);
@@ -34,6 +35,6 @@ h1{
     text-align: center;
 }
 input{ 
-    border: none;
+    border: gainsboro;
     width: 100%;
 }

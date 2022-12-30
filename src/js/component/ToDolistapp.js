@@ -1,37 +1,73 @@
-import React,{useState} from "react";
+import React, { useEffect, useState } from "react";
 
+const ToDoList = () => {
+  const [inputValue, setInputValue] = useState(" ");
+  const [toDos, setToDos] = useState([]);
 
-	const ToDoList = () => {
-		const [inputValue,setInputValue]=useState(" ");
-		const [toDos,setToDos ] = useState([]);
-		return (
-			<div className="container" >
-					<h1> My ToDos</h1>
-				<ul>
-					<li> 
-						<input type="text"
-							onChange={(e)=> setInputValue(e.target.value)}
-							value={inputValue}
-							onKeyUp={(e)=> {
-								if (e.key === "Enter"){
-									setToDos(toDos.concat([inputValue]));
-									setInputValue ("");}}}
-						placeholder= "What should i do now?"></input>
-					</li>
-					{toDos.map((item, index) =>(
-					<li> {item}{""}
-						<i class="fa-regular fa-square-check" onClick={()=> 
-						setToDos(toDos.filter((t, currentIndex) => index != currentIndex))}
-						></i>
-					</li>
-					))
-					}
-				</ul>
-				<div>{toDos.length} task </div>	
-			</div>  
-			);
-		};			
-	  
+  function sendTodoList(ToDoList){
+    fetch("https://assets.breatheco.de/apis/fake/todos/user/Dalyaa", {
+      method: "PUT",
+      body: JSON.stringify(ToDoList),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((resp) => {
+        console.log(resp.ok); // Será true (verdad) si la respuesta es exitosa.
+        console.log(resp.status); // el código de estado = 200 o código = 400 etc.
+        console.log(resp.text()); // Intentará devolver el resultado exacto como cadena (string)
+        return resp.json(); // (regresa una promesa) will try to parse the result as json as return a promise that you can .then for results
+      })
+      .then((data) => {
+        //Aquí es donde debe comenzar tu código después de que finalice la búsqueda
+        console.log(data); //esto imprimirá en la consola el objeto exacto recibido del servidor
+      })
+      .catch((error) => {
+        //manejo de errores
+        console.log(error);
+      });
+	}
+ function addItem(){
+	if(!inputValue && inputValue.trim().length <=0) return;
 
+	setToDos([
+		...toDos,
+		{
+			id:inputValue,
+			label:inputValue,
+			done:false
+		}
+	])
+	sendTodoList([
+		...toDos,
+		{
+			id:inputValue,
+			label:inputValue,
+			done:false
+		}
+	])
+	setInputValue(" ")
+ }
+  return (
+    <div className="container">
+      <h1> My ToDos</h1>
+        <input
+            type="text"
+            onChange={({target:{value}})=>setInputValue(value)}
+            value={inputValue}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                addItem()
+              }
+            }}
+            placeholder="What should i do now?"
+          ></input>
+		  <ul>
 
- export default ToDoList;
+      </ul>
+      <div>{toDos.length} task </div>
+    </div>
+  );
+};
+
+export default ToDoList;
