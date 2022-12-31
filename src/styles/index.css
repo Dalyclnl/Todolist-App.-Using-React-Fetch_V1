@@ -27,14 +27,13 @@ ul li{
     padding: 10px;
 }
 
-ul li i{
-    float:right;
-    font-size:x-large;
-}
 h1{
     text-align: center;
 }
 input{ 
     border: gainsboro;
-    width: 100%;
+    width: 80%;
+    border: 1px;
+   text-align: center;
+   margin-left: 30px;
 }

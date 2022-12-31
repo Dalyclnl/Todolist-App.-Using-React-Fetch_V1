@@ -60,10 +60,18 @@ const ToDoList = () => {
                 addItem()
               }
             }}
-            placeholder="What should i do now?"
           ></input>
 		  <ul>
-
+      {!toDos.length ? (<li></li>
+        ) : (
+          toDos &&
+          toDos.length &&
+          toDos.map((item, i) => (
+            <li id={i} key={i}>
+              {item.label}
+            </li>
+          ))
+        )}   
       </ul>
       <div>{toDos.length} task </div>
     </div>
@@ -71,3 +79,6 @@ const ToDoList = () => {
 };
 
 export default ToDoList;
+
+
+
