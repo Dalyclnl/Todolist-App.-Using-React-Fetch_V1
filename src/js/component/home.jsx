@@ -8,6 +8,7 @@ const Home = () => {
   //  
   fetch('https://assets.breatheco.de/apis/fake/todos/user/Dalyaa', {
       method: "GET",
+      PARAMS: None,
       headers: {
         "Content-Type": "application/json"
       }
@@ -29,7 +30,7 @@ const Home = () => {
 		</div>
 	);
 	
-
+ 
 
   };
 export default Home;
