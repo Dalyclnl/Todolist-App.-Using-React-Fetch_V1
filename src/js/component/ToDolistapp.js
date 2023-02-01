@@ -28,7 +28,7 @@ const ToDoList = () => {
       });
   };
   const addToDo = () => {
-    if (!inputValue && inputValue.trim().length <= 0) return;
+    // if (!inputValue && inputValue.trim().length <= 0) return;
 
     fetch("https://assets.breatheco.de/apis/fake/todos/user/Dalyaa", {
       method: "PUT",
@@ -51,6 +51,7 @@ const ToDoList = () => {
         //manejo de errores
         console.log(error);
       });
+
     setToDos([
       ...toDos,
       {
@@ -68,17 +69,17 @@ const ToDoList = () => {
       },
     ]);
     setInputValue(" ");
-
-    const deleteToDo = () => setToDos(toDos.filter((todo) => todo.id !== id));
-  };
-
-  fetch("https://assets.breatheco.de/apis/fake/todos/user/Dalyaa", {
+   };
+    const deleteToDo = () => {
+      // setToDos(toDos.filter((todo) => todo.id !== id));
+    
+      fetch("https://assets.breatheco.de/apis/fake/todos/user/Dalyaa", {
     method: "DELETE",
-    Params: none,
+    params: '',
     headers: {
       "Content-Type": "application/json",
     },
-  })
+    })
     .then((resp) => {
       console.log(resp.ok); // Será true (verdad) si la respuesta es exitosa.
       console.log(resp.status); // el código de estado = 200 o código = 400 etc.
@@ -93,6 +94,7 @@ const ToDoList = () => {
       //manejo de errores
       console.log(error);
     });
+  }
 
   return (
     <div className="container">
@@ -100,9 +102,8 @@ const ToDoList = () => {
       <input
         type="text"
         onChange={(e) => setInputValue(e.target.value)}
-        placeholder="Ägrerga un anueva tarea"
+        placeholder="Agrerga un anueva tarea"
         value={inputValue}
-        onKeyDown={addToDo}
       ></input>
       <ul>
         {toDos.map((todo) => (
@@ -110,10 +111,15 @@ const ToDoList = () => {
         ))}
       </ul>
       <div>{toDos.length} task </div>
-      <div>
-        <button onClick={promise}></button>
+      <div className="buttons"  >
+      <button type="button" id="delete" class="btn btn-primary" onClick={deleteToDo}>
+         Delete
+        </button>
+        <button type="button agregar" id="add" class="btn btn-success" onClick={addToDo}>
+          Add
+        </button>
       </div>
     </div>
   );
 };
-export default ToDoList;
+ export default ToDoList;

@@ -30,10 +30,24 @@ ul li{
 h1{
     text-align: center;
 }
+input placeholder{
+    border: rgb(253, 245, 245);
+    width: 95%;
+    border: 1px;
+   text-align: center;
+   margin-left: 35px;
+
+}
 input{ 
     border: gainsboro;
     width: 95%;
     border: 1px;
    text-align: center;
    margin-left: 35px;
+}
+.buttons{
+    align-items: d-flex ;
+}
+.btn btn-success{
+    align-items:float-right,
 }
